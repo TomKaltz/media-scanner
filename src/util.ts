@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs/promises'
-import cheerio, { Cheerio, Element } from 'cheerio'
+import cheerio from 'cheerio'
 
 export function getId(fileDir: string, filePath: string): string {
 	return path
@@ -10,7 +10,7 @@ export function getId(fileDir: string, filePath: string): string {
 		.toUpperCase()
 }
 
-export async function getGDDScriptElement(filePath: string): Promise<Cheerio<Element> | undefined> {
+export async function getGDDScriptElement(filePath: string): Promise<cheerio.Cheerio<any> | undefined> {
 	const html = await fs.readFile(filePath)
 	const $ = cheerio.load(html)
 	const gddScripts = $('script[name="graphics-data-definition"]')
@@ -21,7 +21,7 @@ export async function getGDDScriptElement(filePath: string): Promise<Cheerio<Ele
 	}
 }
 
-export async function extractGDDJSON(filePath: string, scriptElem: Cheerio<Element>): Promise<unknown> {
+export async function extractGDDJSON(filePath: string, scriptElem: cheerio.Cheerio<any>): Promise<unknown> {
 	const src = scriptElem.attr('src')
 	let gddContent
 	if (src) {
