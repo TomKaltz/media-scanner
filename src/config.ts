@@ -36,7 +36,7 @@ const defaults = {
 	},
 	http: {
 		port: 8000,
-		host: undefined,
+		host: '0.0.0.0',
 	},
 }
 
