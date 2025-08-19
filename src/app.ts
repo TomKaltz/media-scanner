@@ -234,7 +234,15 @@ export default function (logger: Logger, db: MediaDatabase, config: Record<strin
 			}
 
 			res.set('content-type', 'text/plain')
-			return res.send(`201 THUMBNAIL RETRIEVE OK\r\n${thumbAttachment.data}\r\n`)
+			return res.send(`201 THUMBNAIL RETRIEVE OK\r\n${thumbAttachment.data}`)
+		})
+	)
+
+	app.get(
+		'/healthcheck',
+		wrap(async (_req, res) => {
+			res.set('content-type', 'text/plain')
+			res.send('OK')
 		})
 	)
 
