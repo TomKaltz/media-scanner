@@ -18,11 +18,15 @@ FROM node:18
   WORKDIR /usr/src/app
   ENV NODE_ENV=production
   ENV PATHS__FFMPEG=ffmpeg
-  ENV PATHS__FFPROBE=ffmpeg
+  ENV PATHS__FFPROBE=ffprobe
 
   RUN apt-get update && \
       apt-get install ffmpeg -y && \
-      rm -rf /var/lib/apt/lists/*
+      rm -rf /var/lib/apt/lists/* && \
+      which ffmpeg && \
+      which ffprobe && \
+      echo "FFmpeg version:" && ffmpeg -version && \
+      echo "FFprobe version:" && ffprobe -version
 
   COPY --from=builder /usr/src/app/package.json ./
   COPY --from=builder /usr/src/app/dist ./dist
