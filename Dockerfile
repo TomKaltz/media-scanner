@@ -31,6 +31,9 @@ FROM node:18
   COPY --from=builder /usr/src/app/package.json ./
   COPY --from=builder /usr/src/app/dist ./dist
   COPY --from=builder /usr/src/app/node_modules ./node_modules
+  
+  # Copy CasparCG config file during build
+  COPY tkcg/src/shell/casparcg.config /usr/src/app/casparcg.config
      
   CMD [ "node", "dist" ]
   HEALTHCHECK CMD curl -f http://localhost:8000/healthcheck || exit 1
