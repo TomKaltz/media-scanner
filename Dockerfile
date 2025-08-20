@@ -1,12 +1,12 @@
 FROM node:18 AS builder
   WORKDIR /usr/src/app
 
-  COPY package.json yarn.lock .yarnrc.yml ./
+  COPY media-scanner/package.json media-scanner/yarn.lock media-scanner/.yarnrc.yml ./
   RUN sed -i -e 's/^		"version": "[0-9.]\+",$//' package.json
   RUN corepack enable
 
-  COPY ./src ./src
-  COPY tsconfig.build.json ./
+  COPY media-scanner/src ./src
+  COPY media-scanner/tsconfig.build.json ./
 
   RUN yarn install
   RUN yarn build:ts
@@ -21,7 +21,7 @@ FROM node:18
   ENV PATHS__FFPROBE=ffprobe
 
   RUN apt-get update && \
-      apt-get install ffmpeg -y && \
+      apt-get install ffmpeg curl -y && \
       rm -rf /var/lib/apt/lists/* && \
       which ffmpeg && \
       which ffprobe && \
