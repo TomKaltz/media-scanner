@@ -32,8 +32,7 @@ FROM node:18
   COPY --from=builder /usr/src/app/dist ./dist
   COPY --from=builder /usr/src/app/node_modules ./node_modules
   
-  # Copy config file during build
-  COPY tkcg/src/shell/casparcg.config ./casparcg.config
+  # Config file will be mounted from host at runtime
      
   CMD [ "node", "dist" ]
   HEALTHCHECK CMD curl -f http://localhost:8000/healthcheck || exit 1
