@@ -20,15 +20,15 @@
 		"build-win32-x64": "run build win32 x64",
 		"build:docker": "docker build .",
 		"lint:raw": "run eslint --ext .ts --ext .js --ext .tsx --ext .jsx --ext .mts --ext .mjs --ignore-pattern dist",
-		"lint": "yarn lint:raw .",
-		"lint-fix": "yarn lint --fix",
-		"unit": "node tools/fetch_ffmpeg.mjs && yarn jest",
-		"license-validate": "yarn sofie-licensecheck",
+		"lint": "pnpm lint:raw .",
+		"lint-fix": "pnpm lint --fix",
+		"unit": "node tools/fetch_ffmpeg.mjs && pnpm jest",
+		"license-validate": "pnpm sofie-licensecheck",
 		"eslint": "./node_modules/.bin/eslint"
 	},
 	"engines": {
 		"node": ">=18.18",
-		"yarn": ">=4"
+		"pnpm": ">=8"
 	},
 	"author": "",
 	"dependencies": {
@@ -68,14 +68,14 @@
 		"typescript": "~4.9.5",
 		"zip-a-folder": "^1.1.7"
 	},
-	"packageManager": "yarn@4.0.2",
+	"packageManager": "pnpm@10.15.0",
 	"prettier": "@sofie-automation/code-standard-preset/.prettierrc.json",
 	"lint-staged": {
 		"*.{css,json,md,scss}": [
 			"prettier --write"
 		],
 		"*.{ts,tsx,js,jsx,mts,mjs}": [
-			"yarn lint:raw --fix"
+			"pnpm lint:raw --fix"
 		]
 	}
 }

@@ -75,19 +75,19 @@ After this:
   - FFmpeg 6.1 is currently recommended, newer versions have not been tested and may have issues
   - A full list of known working versions can be found at https://github.com/CasparCG/media-scanner/blob/master/src/__tests__/ffmpegReleases.json
 - [Optional] Copy a `casparcg.config` file into the root folder
-- Run `yarn install`
-- Run `yarn dev` to start the development server
+- Run `pnpm install`
+- Run `pnpm dev` to start the development server
 
 ## Building executable
 
 Be aware that because of the native extensions, you may only be able to build for the target you are currently on.
 
 - Build for the current platform
-  - `yarn build`
+  - `pnpm build`
 - On Windows
-  - `yarn build-win32-x64`
+  - `pnpm build-win32-x64`
 - On Linux
-  - `yarn build-linux-x64` or `yarn build-linux-arm64` depending on cpu architecture
+  - `pnpm build-linux-x64` or `pnpm build-linux-arm64` depending on cpu architecture
 
 The built files will be placed in `./deploy`, make sure you copy all non-zipfiles into the main CasparCG directory.
 
